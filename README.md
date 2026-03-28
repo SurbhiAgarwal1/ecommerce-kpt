@@ -415,6 +415,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Made with ☸️ by [Surbhi Agarwal](https://github.com/SurbhiAgarwal1)
+Made by [Surbhi Agarwal](https://github.com/SurbhiAgarwal1)
 
 </div>
