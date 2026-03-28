@@ -66,8 +66,33 @@ all via clean, composable kustomize overlays. No manual file editing required.
 ```
 
 All three services consume the shared ConfigMap via `envFrom`. Variants patch only specific fields in this ConfigMap — or in Deployment resources for size changes.
-
 ---
+```mermaid
+graph TD
+  subgraph base["base/ — core manifests"]
+    CM["ecommerce-config ConfigMap\ntheme · locale · currency · tax · profile"]
+    FE["frontend\nnginx:1.25-alpine · port 80"]
+    CA["catalog\nnginx:1.25-alpine · port 80"]
+    CO["checkout\nnginx:1.25-alpine · port 80"]
+    CM -->|envFrom| FE
+    CM -->|envFrom| CA
+    CM -->|envFrom| CO
+  end
+
+  subgraph variants["variants/ — kustomize overlays"]
+    TH["theme/\nflorist · car-accessories"]
+    LO["locale/\ninr · eur"]
+    TX["tax/\nindia-gst · eu-vat"]
+    SZ["size/\nmedium · large"]
+  end
+
+  TH -->|patches ConfigMap| CM
+  LO -->|patches ConfigMap| CM
+  TX -->|patches ConfigMap| CM
+  SZ -->|patches ConfigMap + Deployments| FE
+  SZ -->|patches ConfigMap + Deployments| CA
+  SZ -->|patches ConfigMap + Deployments| CO
+```
 
 ## 📁 Project Structure
 
