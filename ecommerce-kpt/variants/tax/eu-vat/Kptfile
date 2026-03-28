@@ -1,0 +1,8 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: ecommerce-eu-vat-tax
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: "Tax override: EU VAT at 20%, inclusive pricing."

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce
+data:
+  language: de
+  currency: EUR
+  currency_symbol: "€"
+  date_format: "DD.MM.YYYY"

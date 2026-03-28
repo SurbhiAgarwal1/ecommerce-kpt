@@ -1,0 +1,46 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkout
+  namespace: ecommerce
+  labels:
+    app: checkout
+    component: ecommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkout
+  template:
+    metadata:
+      labels:
+        app: checkout
+    spec:
+      containers:
+      - name: checkout
+        image: nginx:1.25-alpine
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        envFrom:
+        - configMapRef:
+            name: ecommerce-config
+        env:
+        - name: SERVICE_NAME
+          value: checkout
+        - name: SERVICE_PORT
+          value: "80"
+        - name: CATALOG_URL
+          value: http://catalog:80

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce
+data:
+  tax_mode: eu_vat
+  tax_rate: "0.20"
+  tax_label: "VAT"
+  tax_inclusive: "true"

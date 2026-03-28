@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+  namespace: ecommerce
+spec:
+  replicas: 4
+  template:
+    spec:
+      containers:
+        - name: catalog
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi

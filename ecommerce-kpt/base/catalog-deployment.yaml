@@ -1,0 +1,44 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+  namespace: ecommerce
+  labels:
+    app: catalog
+    component: ecommerce
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+    spec:
+      containers:
+      - name: catalog
+        image: nginx:1.25-alpine
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        envFrom:
+        - configMapRef:
+            name: ecommerce-config
+        env:
+        - name: SERVICE_NAME
+          value: catalog
+        - name: SERVICE_PORT
+          value: "80"

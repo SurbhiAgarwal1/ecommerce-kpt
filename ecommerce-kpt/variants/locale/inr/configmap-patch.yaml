@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce
+data:
+  language: hi
+  currency: INR
+  currency_symbol: "₹"
+  date_format: "DD/MM/YYYY"

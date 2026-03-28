@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce
+data:
+  # --- Theme ---
+  theme: boutique
+  store_name: "My Boutique"
+  store_logo_url: ""
+
+  # --- Locale & Currency ---
+  language: en
+  currency: USD
+  currency_symbol: "$"
+  date_format: "MM/DD/YYYY"
+
+  # --- Tax ---
+  tax_mode: us_sales_tax
+  tax_rate: "0.08"
+  tax_label: "Sales Tax"
+  tax_inclusive: "false"
+
+  # --- Deployment Profile ---
+  profile: small

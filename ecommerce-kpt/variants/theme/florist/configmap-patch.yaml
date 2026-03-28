@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce
+data:
+  theme: florist
+  store_name: "Petal & Bloom"
+  store_logo_url: ""

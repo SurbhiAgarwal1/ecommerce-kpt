@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ecommerce-config
+  namespace: ecommerce
+data:
+  theme: car-accessories
+  store_name: "AutoParts Pro"
+  store_logo_url: ""
